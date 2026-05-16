@@ -1,3 +1,4 @@
+
 import React, { useState } from "react";
 import { projects } from "../../constants";
 
@@ -21,6 +22,7 @@ const Work = () => {
       <div className="text-center mb-16">
         <h2 className="text-4xl font-bold text-white">PROJECTS</h2>
         <div className="w-32 h-1 bg-purple-500 mx-auto mt-4"></div>
+
         <p className="text-gray-400 mt-4 text-lg font-semibold">
           A showcase of the projects I have worked on, highlighting my skills
           and experience in various technologies
@@ -35,6 +37,7 @@ const Work = () => {
             onClick={() => handleOpenModal(project)}
             className="border border-white bg-gray-900 backdrop-blur-md rounded-2xl shadow-2xl overflow-hidden cursor-pointer hover:shadow-purple-500/50 hover:-translate-y-2 transition-transform duration-300"
           >
+            {/* Project Image */}
             <div className="p-4">
               <img
                 src={project.image}
@@ -42,13 +45,18 @@ const Work = () => {
                 className="w-full h-48 object-cover rounded-xl"
               />
             </div>
+
+            {/* Project Content */}
             <div className="p-6">
               <h3 className="text-2xl font-bold text-white mb-2">
                 {project.title}
               </h3>
-              <p className="text-gray-500 mb-4 pt-4 line-clamp-3">
+
+              <p className="text-gray-400 mb-4 pt-4 line-clamp-3">
                 {project.description}
               </p>
+
+              {/* Tags */}
               <div className="mb-4">
                 {project.tags.map((tag, index) => (
                   <span
@@ -59,15 +67,40 @@ const Work = () => {
                   </span>
                 ))}
               </div>
+
+              {/* Github & Live Links */}
+              <div
+                className="flex gap-3 mt-4"
+                onClick={(e) => e.stopPropagation()}
+              >
+                <a
+                  href={project.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-1/2 bg-gray-800 hover:bg-purple-700 text-white px-4 py-2 rounded-lg text-sm font-semibold text-center transition"
+                >
+                  GitHub
+                </a>
+
+                <a
+                  href={project.webapp}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-1/2 bg-purple-600 hover:bg-purple-800 text-white px-4 py-2 rounded-lg text-sm font-semibold text-center transition"
+                >
+                  Live Demo
+                </a>
+              </div>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Modal Container */}
+      {/* Modal */}
       {selectedProject && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-90 p-4">
           <div className="bg-gray-900 rounded-xl shadow-2xl lg:w-full w-[90%] max-w-3xl overflow-hidden relative">
+            {/* Close Button */}
             <div className="flex justify-end p-4">
               <button
                 onClick={handleCloseModal}
@@ -78,6 +111,7 @@ const Work = () => {
             </div>
 
             <div className="flex flex-col">
+              {/* Modal Image */}
               <div className="w-full flex justify-center bg-gray-900 px-4">
                 <img
                   src={selectedProject.image}
@@ -85,13 +119,18 @@ const Work = () => {
                   className="lg:w-full w-[95%] object-contain rounded-xl shadow-2xl"
                 />
               </div>
+
+              {/* Modal Content */}
               <div className="lg:p-8 p-6">
-                <h3 className="lg:text-3xl font-bold text-white mb-4 text-md">
+                <h3 className="lg:text-3xl text-md font-bold text-white mb-4">
                   {selectedProject.title}
                 </h3>
+
                 <p className="text-gray-400 mb-6 lg:text-base text-xs">
                   {selectedProject.description}
                 </p>
+
+                {/* Modal Tags */}
                 <div className="flex flex-wrap gap-2 mb-6">
                   {selectedProject.tags.map((tag, index) => (
                     <span
@@ -102,15 +141,18 @@ const Work = () => {
                     </span>
                   ))}
                 </div>
+
+                {/* Modal Buttons */}
                 <div className="flex gap-4">
                   <a
                     href={selectedProject.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-1/2 bg-gray-800 hover:bg-purple-800 text-gray-400 lg:px-6 lg:py-2 px-2 py-1 rounded-xl lg:text-xl text-sm font-semibold text-center"
+                    className="w-1/2 bg-gray-800 hover:bg-purple-800 text-gray-300 lg:px-6 lg:py-2 px-2 py-1 rounded-xl lg:text-xl text-sm font-semibold text-center"
                   >
                     View Code
                   </a>
+
                   <a
                     href={selectedProject.webapp}
                     target="_blank"
